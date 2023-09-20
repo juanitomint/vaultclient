@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "vaultclient"
+version = "0.1.0"
+description = ""
+authors = ["Juan Borda <juanignacioborda@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+hvac = "^1.2.1"
+toml = "^0.10.2"
+python-dotenv = "^1.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.13.3"
+black = "*"
+flake8 = "^4.0.1"
+isort = "*"
+autoflake = "^1.4"
+pre-commit = "^2.17.0"
+coverage = "^6.3.2"
+urllib3 = "^1.26.9"
+
+[tool.isort]
+profile = "black"
