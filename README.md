@@ -18,7 +18,7 @@ look in [main.py](https://github.com/juanitomint/vaultclient/blob/main/main.py)
 .env 
 this env vars are available with sabe defaults
 | Variable       | default value | Description  |
-|----------------|:--------------:| ------------:|
+|----------------|:--------------:|:------------|
 | VAULT_HOSTPORT |http://localhost:8200| url for vault endpoint| 
 | VAULT_PATH     |"kubernetes-access"| path in Authentication Methods
 |VAULT_ROLE      |"my-api"           | Role asociated to service account in kubernetes|
