@@ -1,7 +1,7 @@
 import json
 import os
 
-import vaultclient
+import tiny_vaultclient
 from config import Config
 
 # set VAULT_ADDR for local
@@ -11,7 +11,7 @@ Config.VAULT_SSL_VERIFY = False
 
 defaultPath = ""
 # Create a VaultClient
-vclient = vaultclient.Client(Config)
+vclient = tiny_vaultclient.Client(Config)
 # List secrets
 secrets = vclient.listSecrets(defaultPath)
 # Print secrets

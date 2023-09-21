@@ -7,6 +7,13 @@ IMAGE_TAG         ?= ${GIT_TAG}
 VAULT_ADDR=http://localhost:8200
 help:
 	@grep -E '^[\/a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'	
+.PHONY: build
+build: ## Build python package
+	poetry build
+.PHONY: publish
+publish: ## Publish package to pypi
+	poetry publish
+
 .PHONY: docker-build
 docker-build: ## Build docker image using latest as cache
 	echo "building: ${IMAGE_REPOSITORY}:${IMAGE_TAG}"
