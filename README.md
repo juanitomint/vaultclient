@@ -13,18 +13,17 @@ or with poetry
 poetry add tiny_vaultclient
 ```
 ## USAGE
-look in [main.py](./main.py)
+look in [main.py](https://github.com/juanitomint/vaultclient/blob/main/main.py)
 
 .env 
 this env vars are available with sabe defaults
-
-VAULT_HOSTPORT = os.environ.get("VAULT_HOSTPORT", "http://localhost:8200")
-
-VAULT_PATH = os.environ.get("VAULT_PATH", "kubernetes-access")
-VAULT_ROLE = os.environ.get("VAULT_ROLE", "my-api")
-VAULT_MOUNTPOINT = os.environ.get("VAULT_MOUNTPOINT", "secret")
-VAULT_SSL_VERIFY = os.environ.get("VAULT_SSL_VERIFY", True)
-
+| Variable       | default value | Description  |
+|----------------|:--------------:| ------------:|
+| VAULT_HOSTPORT |http://localhost:8200| url for vault endpoint| 
+| VAULT_PATH     |"kubernetes-access"| path in Authentication Methods
+|VAULT_ROLE      |"my-api"           | Role asociated to service account in kubernetes|
+|VAULT_MOUNTPOINT| secret | Fixed muuntpoint for kv stores like /services or /apis|
+|VAULT_SSL_VERIFY |True| Wheather or not verify the ssl certificate, useful for self signed certs|
 
 ## Uninstall/Remove
 
@@ -38,21 +37,12 @@ pip uninstall tiny_vaultclient
 spin up a local vault instance using docker
 ```bash
 export VAULT_ADDR='http://127.0.0.1:8200' 
-make install 
+
 make vault-up 
 vault login devtoken
 make vault-secret 
-make test-docker 
 ```
-Dcocker compose will spin up a database, adminer and podinfo
 
-you can use podman to check environment variables passed to container
-
- ![http://localhost:9898/env](https://github.com/juanitomint/vault-env-helper/blob/main/img/podinfo.png?raw=true)
-
-or  access the db using adminer
-
- ![http://localhost:8080](https://github.com/juanitomint/vault-env-helper/blob/main/img/adminer.png?raw=true)
 
 ## HELP
 ```bash
