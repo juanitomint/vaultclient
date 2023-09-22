@@ -4,6 +4,8 @@ import os
 import tinyvaultclient
 from config import Config
 
+vclient = tinyvaultclient.Client(Config)
+
 # set VAULT_ADDR for local
 os.environ["VAULT_ADDR"] = "http://localhost:8200"
 # disable ssl for local
@@ -11,7 +13,6 @@ Config.VAULT_SSL_VERIFY = False
 
 defaultPath = ""
 # Create a VaultClient
-vclient = tinyvaultclient.Client(Config)
 # List secrets
 secrets = vclient.listSecrets(defaultPath)
 # Print secrets

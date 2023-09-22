@@ -21,10 +21,9 @@ class Client:
         self.role = config.VAULT_ROLE
         self.login_mount_point = config.VAULT_PATH
         self.mount_point = config.VAULT_MOUNTPOINT
-        self.verify = getattr(config, "VAULT_SSL_VERIFY" , True
+        self.verify = getattr(config, "VAULT_SSL_VERIFY", True)
         if logger is None:
             self.setup_logger()
-        self.client = hvac.Client()
         self.client = self.getClient()
 
     def setup_logger(self):
@@ -46,7 +45,7 @@ class Client:
         Returns:
             The client object if it is authenticated, otherwise a new client object.
         """
-        if self.client and self.client.is_authenticated():
+        if hasattr(self, "client") and self.client and self.client.is_authenticated():
             self.logger.info("Client still good to go!")
             return self.client
         else:
@@ -65,8 +64,9 @@ class Client:
         """
         try:
             client = hvac.Client(url=self.url, verify=self.verify)
+
             if os.path.isfile("/var/run/secrets/kubernetes.io/serviceaccount/token"):
-                self.vault_login()
+                self.vault_login(client)
             else:
                 self.logger.info(
                     "/var/run/secrets/kubernetes.io/serviceaccount/token.... not found"
@@ -78,7 +78,7 @@ class Client:
             self.logger.error(str(err))
             raise
 
-    def vault_login(self):
+    def vault_login(self, client):
         """
         Logs into the vault using the provided token and retrieves a JWT for authentication.
 
@@ -92,8 +92,8 @@ class Client:
         token_path = "/var/run/secrets/kubernetes.io/serviceaccount/token"
         f = open(token_path)
         jwt = f.read()
-        response = Kubernetes(self.client.adapter).login(
-            role=self.role, jwt=jwt, mount_point=self.login_mountpoint
+        response = Kubernetes(client.adapter).login(
+            role=self.role, jwt=jwt, mount_point=self.login_mount_point
         )
         self.logger.debug(response)
 

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tinyvaultclient"
-version = "0.1.2"
+version = "0.1.6"
 description = ""
 authors = ["Juan Borda <juanignacioborda@gmail.com>"]
 readme = "README.md"
