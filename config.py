@@ -26,7 +26,7 @@ class Config:
     PYPROJECT = toml.load("pyproject.toml")["tool"]["poetry"]
     VAULT_HOSTPORT = os.environ.get("VAULT_HOSTPORT", "http://localhost:8200")
 
-    VAULT_PATH = os.environ.get("VAULT_PATH", "kubernetes-infra-prod-us-east-1")
-    VAULT_ROLE = os.environ.get("VAULT_ROLE", "observability-api")
+    VAULT_PATH = os.environ.get("VAULT_PATH", "kubernetes-my-cluster-name")
+    VAULT_ROLE = os.environ.get("VAULT_ROLE", "my-vault-role")
     VAULT_MOUNTPOINT = os.environ.get("VAULT_MOUNTPOINT", "secret")
     VAULT_SSL_VERIFY = os.environ.get("VAULT_SSL_VERIFY", True)

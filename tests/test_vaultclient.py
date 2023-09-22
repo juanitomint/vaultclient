@@ -2,7 +2,7 @@ import os
 import unittest
 
 # from unittest.mock import MagicMock
-import tiny_vaultclient
+import tinyvaultclient
 from config import Config
 
 
@@ -11,7 +11,7 @@ class NewClinetTest(unittest.TestCase):
         # set VAULT_ADDR for local
         os.environ["VAULT_ADDR"] = "http://localhost:8200"
 
-        self.client = tiny_vaultclient.Client(Config)
+        self.client = tinyvaultclient.Client(Config)
 
     def test_new_client_success(self):
         # Test creating a new client successfully

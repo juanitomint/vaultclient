@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "tiny_vaultclient"
+name = "tinyvaultclient"
 version = "0.1.2"
 description = ""
 authors = ["Juan Borda <juanignacioborda@gmail.com>"]

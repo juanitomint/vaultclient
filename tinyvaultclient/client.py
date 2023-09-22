@@ -21,7 +21,7 @@ class Client:
         self.role = config.VAULT_ROLE
         self.login_mount_point = config.VAULT_PATH
         self.mount_point = config.VAULT_MOUNTPOINT
-        self.verify = config.VAULT_SSL_VERIFY
+        self.verify = getattr(config, "VAULT_SSL_VERIFY" , True
         if logger is None:
             self.setup_logger()
         self.client = hvac.Client()
@@ -66,7 +66,7 @@ class Client:
         try:
             client = hvac.Client(url=self.url, verify=self.verify)
             if os.path.isfile("/var/run/secrets/kubernetes.io/serviceaccount/token"):
-                self.vault_login(client)
+                self.vault_login()
             else:
                 self.logger.info(
                     "/var/run/secrets/kubernetes.io/serviceaccount/token.... not found"
